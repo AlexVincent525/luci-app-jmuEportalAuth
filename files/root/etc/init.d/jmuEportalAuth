@@ -1,0 +1,57 @@
+#!/bin/sh /etc/rc.common
+START=90
+
+run_jmuEportalAuth()
+{
+    local enable
+    local username
+    local password
+    local service
+    local cronset
+    config_get_bool enable $1 enable
+    config_get username $1 username
+    config_get password $1 password
+    config_get service $1 service
+    config_get_bool cronset $1 cronset
+
+    if [ $enable ] && [ $password ] && [ $username ]; then
+        if [ $service != 0 ]; then
+            jmuEportalAuth -s $service -u $username -p $password
+        else
+            jmuEportalAuth -s 0 -u $username -p $password
+        fi
+    fi
+
+    crontab_file="/etc/crontabs/root"
+    if [ $enable ] && [ $cronset ]; then
+        if [ ! -f $crontab_file ]; then
+            touch $crontab_file
+        else
+            sed -i '/jmuEportalAuth/d' $crontab_file
+        fi
+        echo "5  6  *  *  *  jmuEportalAuth -r" >> $crontab_file
+    else
+        sed -i '/jmuEportalAuth/d' $crontab_file
+    fi
+}
+
+start()
+{
+    config_load jmuEportalAuth
+    config_foreach run_jmuEportalAuth jmuEportalAuth
+}
+
+stop()
+{
+    jmuEportalAuth -k
+    sleep 1
+    killall jmuEportalAuth
+}
+
+restart()
+{
+    jmuEportalAuth -k
+    sleep 1
+    config_load jmuEportalAuth
+    config_foreach run_jmuEportalAuth jmuEportalAuth
+}

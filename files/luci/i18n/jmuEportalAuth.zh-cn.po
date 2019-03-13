@@ -1,0 +1,56 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "jmuEportalAuth"
+msgstr "集美大学eportal认证"
+
+msgid "jmuEportalAuth Settings"
+msgstr "JMU eportal 认证"
+
+msgid "Configure eportal authentication for JMU."
+msgstr "配置集美大学eportal认证"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Network Status"
+msgstr "网络状态"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Enable"
+msgstr "启用"
+
+msgid "Morning Re-Auth"
+msgstr "清晨自动重连"
+
+msgid "Re-auth when it's 6AM everyday."
+msgstr "每日6时自动进行"
+
+msgid "Username"
+msgstr "用户名"
+
+msgid "WorkID/StuID"
+msgstr "工号/学号"
+
+msgid "Password for jmu pass."
+msgstr "集大通行证密码"
+
+msgid "Services"
+msgstr "服务"
+
+msgid "Education Network"
+msgstr "教育网"
+
+msgid "China Telecom"
+msgstr "电信宽带接入"
+
+msgid "China Unicom"
+msgstr "联通宽带接入"
+
+msgid "China Mobile"
+msgstr "移动宽带接入"
+
+msgid "Bind network operator at <a href='http://user.jmu.edu.cn'>user.jmu.edu.cn</a> before using it."
+msgstr "使用对应服务前请前往 <a href='http://user.jmu.edu.cn'>user.jmu.edu.cn</a> 进行绑定。"
