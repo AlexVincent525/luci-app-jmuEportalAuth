@@ -39,16 +39,26 @@ endef
 define Package/luci-app-jmuEportalAuth/install
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_DIR) $(1)/etc/rc.d
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/controller
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/i18n
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/model/cbi
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/jmuEportalAuth.*.lmo $(1)/usr/lib/lua/luci/i18n/
 	$(INSTALL_CONF) ./files/root/etc/config/jmuEportalAuth $(1)/etc/config/jmuEportalAuth
 	$(INSTALL_BIN) ./files/root/etc/init.d/jmuEportalAuth $(1)/etc/init.d/jmuEportalAuth
-	$(INSTALL_BIN) ./files/root/etc/init.d/jmuEportalAuth $(1)/etc/rc.d/S90jmuEportalAuth
 	$(INSTALL_DATA) ./files/luci/controller/jmuEportalAuth.lua $(1)/usr/lib/lua/luci/controller/jmuEportalAuth.lua
 	$(INSTALL_DATA) ./files/luci/model/cbi/jmuEportalAuth.lua $(1)/usr/lib/lua/luci/model/cbi/jmuEportalAuth.lua
+endef
+
+define Package/jmuEportalAuth/preinst
+	#!/bin/sh
+	[ -f '/etc/crontabs/root' ] && sed -i '/jmuEportalAuth/d' '/etc/crontabs/root'
+	exit 0
+endef
+
+define Package/jmuEportalAuth/prerm
+	#!/bin/sh
+	[ -f '/etc/crontabs/root' ] && sed -i '/jmuEportalAuth/d' '/etc/crontabs/root'
+	exit 0
 endef
 
 $(eval $(call BuildPackage,luci-app-jmuEportalAuth))

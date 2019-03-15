@@ -1,57 +1,58 @@
 #!/bin/sh /etc/rc.common
 START=90
+STOP=15
+
+uci_get_by_type() {
+	local ret=$(uci get $NAME.@$1[0].$2 2>/dev/null)
+	echo ${ret:=$3}
+}
 
 run_jmuEportalAuth()
 {
-    local enable
-    local username
-    local password
-    local service
-    local cronset
-    config_get_bool enable $1 enable
-    config_get username $1 username
-    config_get password $1 password
-    config_get service $1 service
-    config_get_bool cronset $1 cronset
+	local enable=$(uci_get_by_type jmuEportalAuth enable)
+	local username=$(uci_get_by_type jmuEportalAuth username)
+	local password=$(uci_get_by_type jmuEportalAuth password)
+	local services=$(uci_get_by_type jmuEportalAuth services)
+	local cronset=$(uci_get_by_type jmuEportalAuth cronset)
 
-    if [ $enable ] && [ $password ] && [ $username ]; then
-        if [ $service != 0 ]; then
-            jmuEportalAuth -s $service -u $username -p $password
-        else
-            jmuEportalAuth -s 0 -u $username -p $password
-        fi
-    fi
+	if [ $enable ] && [ $password ] && [ $username ]; then
+		if [ $services -ge 0 ] && [ $services -le 3 ]; then
+			jmuEportalAuth -s $services -u $username -p $password
+		else
+			jmuEportalAuth -s 0 -u $username -p $password
+		fi
+	fi
 
-    crontab_file="/etc/crontabs/root"
-    if [ $enable ] && [ $cronset ]; then
-        if [ ! -f $crontab_file ]; then
-            touch $crontab_file
-        else
-            sed -i '/jmuEportalAuth/d' $crontab_file
-        fi
-        echo "5  6  *  *  *  jmuEportalAuth -r" >> $crontab_file
-    else
-        sed -i '/jmuEportalAuth/d' $crontab_file
-    fi
+	crontab_file="/etc/crontabs/root"
+	if [ $enable ] && [ $cronset ]; then
+		if [ ! -f $crontab_file ]; then
+			touch $crontab_file
+			sleep 1
+			echo "5  6  *  *  *  /bin/jmuEportalAuth -r" >> $crontab_file
+		else
+			sed -i '/jmuEportalAuth/d' $crontab_file
+			sleep 1
+			echo "5  6  *  *  *  /bin/jmuEportalAuth -r" >> $crontab_file
+		fi
+	else
+		sed -i '/jmuEportalAuth/d' $crontab_file
+	fi
 }
 
 start()
 {
-    config_load jmuEportalAuth
-    config_foreach run_jmuEportalAuth jmuEportalAuth
+	run_jmuEportalAuth
 }
 
 stop()
 {
-    jmuEportalAuth -k
-    sleep 1
-    killall jmuEportalAuth
+	jmuEportalAuth -k
+	killall jmuEportalAuth
 }
 
 restart()
 {
-    jmuEportalAuth -k
-    sleep 1
-    config_load jmuEportalAuth
-    config_foreach run_jmuEportalAuth jmuEportalAuth
+	jmuEportalAuth -k
+	stop
+	start
 }

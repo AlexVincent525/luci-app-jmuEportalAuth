@@ -52,5 +52,5 @@ msgstr "联通宽带接入"
 msgid "China Mobile"
 msgstr "移动宽带接入"
 
-msgid "Bind network operator at <a href='http://user.jmu.edu.cn'>user.jmu.edu.cn</a> before using it."
-msgstr "使用对应服务前请前往 <a href='http://user.jmu.edu.cn'>user.jmu.edu.cn</a> 进行绑定。"
+msgid "Bind network operator at <a target='_blank' href='http://user.jmu.edu.cn'>user.jmu.edu.cn</a> before using it."
+msgstr "使用对应服务前请前往 <a target='_blank' href='http://user.jmu.edu.cn'>user.jmu.edu.cn</a> 进行绑定。"
