@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-jmuEportalAuth
-PKG_VERSION=0.1.0
+PKG_VERSION=0.1.1
 PKG_RELEASE:=0
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
@@ -51,13 +51,19 @@ endef
 
 define Package/jmuEportalAuth/preinst
 	#!/bin/sh
-	[ -f '/etc/crontabs/root' ] && sed -i '/jmuEportalAuth/d' '/etc/crontabs/root'
+	crontab_file="/etc/crontabs/root"
+	[ -f $crontab_file ] && sed -i "/jmuEportalAuth/d" $crontab_file
+	/sbin/uci set system.@system[0].zonename="Asia/Shanghai"
+	/sbin/uci set system.@system[0].timezone="CST-8"
+	service system restart
 	exit 0
 endef
 
 define Package/jmuEportalAuth/prerm
 	#!/bin/sh
-	[ -f '/etc/crontabs/root' ] && sed -i '/jmuEportalAuth/d' '/etc/crontabs/root'
+	crontab_file="/etc/crontabs/root"
+	[ -f $crontab_file ] && sed -i "/jmuEportalAuth/d" $crontab_file
+	rm -rf /etc/config/jmuEportalAuth
 	exit 0
 endef
 

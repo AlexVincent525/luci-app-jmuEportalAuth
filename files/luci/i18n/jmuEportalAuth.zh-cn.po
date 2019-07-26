@@ -7,8 +7,11 @@ msgstr "集美大学eportal认证"
 msgid "jmuEportalAuth Settings"
 msgstr "JMU eportal 认证"
 
-msgid "Configure eportal authentication for JMU."
-msgstr "配置集美大学eportal认证"
+msgid "Configure eportal authentication for JMU <strong style='padding:0 3px;border-radius:5px;background-color:green;color:white'>Online</strong>"
+msgstr "配置集美大学eportal认证 <strong style='padding:0 3px;border-radius:5px;background-color:green;color:white'>已联网</strong>"
+
+msgid "Configure eportal authentication for JMU <strong style='padding:0 3px;border-radius:5px;background-color:red;color:white'>Offline</strong>"
+msgstr "配置集美大学eportal认证 <strong style='padding:0 3px;border-radius:5px;background-color:red;color:white'>未联网</strong>"
 
 msgid "Status"
 msgstr "状态"
@@ -16,11 +19,17 @@ msgstr "状态"
 msgid "Network Status"
 msgstr "网络状态"
 
-msgid "Settings"
-msgstr "设置"
+msgid "Basic Settings"
+msgstr "基本设置"
+
+msgid "Actions"
+msgstr "操作"
 
 msgid "Enable"
 msgstr "启用"
+
+msgid "After clicked <button style=\"color:#fff;background:linear-gradient(to bottom,#0069d6,#0049d6) no-repeat;text-shadow:0 -1px 0 rgba(0,0,0,0.25)\" class=\"cbi-button cbi-button-apply\" type=\"button\">Save & Apply</button>, click <button class='cbi-button cbi-button-apply' onclick=\"this.blur(); var section_name=document.getElementsByTagName('label')[1].getAttribute('for').split('.')[2]; return cbi_t_switch('jmuEportalAuth.'+section_name, 'action')\">Actions</button> to restart service manually."
+msgstr "点击 <button style=\"color:#fff;background:linear-gradient(to bottom,#0069d6,#0049d6) no-repeat;text-shadow:0 -1px 0 rgba(0,0,0,0.25)\" class=\"cbi-button cbi-button-apply\" type=\"button\">保存并应用</button> 后, 请点击 <button class='cbi-button cbi-button-apply' onclick=\"this.blur(); var section_name=document.getElementsByTagName('label')[1].getAttribute('for').split('.')[2]; return cbi_t_switch('jmuEportalAuth.'+section_name, 'action')\">操作</button> 以手动重启服务。"
 
 msgid "Morning Re-Auth"
 msgstr "清晨自动重连"
@@ -54,3 +63,12 @@ msgstr "移动宽带接入"
 
 msgid "Bind network operator at <a target='_blank' href='http://user.jmu.edu.cn'>user.jmu.edu.cn</a> before using it."
 msgstr "使用对应服务前请前往 <a target='_blank' href='http://user.jmu.edu.cn'>user.jmu.edu.cn</a> 进行绑定。"
+
+msgid "Restart Auth"
+msgstr "重启认证"
+
+msgid "Start Auth"
+msgstr "启动认证"
+
+msgid "Stop Auth"
+msgstr "停止认证"

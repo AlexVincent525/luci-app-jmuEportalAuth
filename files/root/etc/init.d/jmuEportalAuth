@@ -1,6 +1,8 @@
 #!/bin/sh /etc/rc.common
-START=90
+START=80
 STOP=15
+
+NAME="jmuEportalAuth"
 
 uci_get_by_type() {
 	local ret=$(uci get $NAME.@$1[0].$2 2>/dev/null)
@@ -14,6 +16,11 @@ run_jmuEportalAuth()
 	local password=$(uci_get_by_type jmuEportalAuth password)
 	local services=$(uci_get_by_type jmuEportalAuth services)
 	local cronset=$(uci_get_by_type jmuEportalAuth cronset)
+	echo "Enable  : $enable" > /tmp/eportal.log
+	echo "Username: $username" >> /tmp/eportal.log
+	echo "Password: $password" >> /tmp/eportal.log
+	echo "Services: $services" >> /tmp/eportal.log
+	echo "Cronset : $cronset" >> /tmp/eportal.log
 
 	if [ $enable ] && [ $password ] && [ $username ]; then
 		if [ $services -ge 0 ] && [ $services -le 3 ]; then
@@ -28,31 +35,30 @@ run_jmuEportalAuth()
 		if [ ! -f $crontab_file ]; then
 			touch $crontab_file
 			sleep 1
-			echo "5  6  *  *  *  /bin/jmuEportalAuth -r" >> $crontab_file
+			echo "30 6 * * * /bin/jmuEportalAuth -r" >> $crontab_file
 		else
 			sed -i '/jmuEportalAuth/d' $crontab_file
 			sleep 1
-			echo "5  6  *  *  *  /bin/jmuEportalAuth -r" >> $crontab_file
+			echo "30 6 * * * /bin/jmuEportalAuth -r" >> $crontab_file
 		fi
+		service cron restart
 	else
 		sed -i '/jmuEportalAuth/d' $crontab_file
+		service cron restart
 	fi
 }
 
 start()
 {
-	run_jmuEportalAuth
+	config_load jmuEportalAuth
+	config_foreach run_jmuEportalAuth jmuEportalAuth
 }
 
 stop()
 {
 	jmuEportalAuth -k
+	sleep 1
 	killall jmuEportalAuth
 }
 
-restart()
-{
-	jmuEportalAuth -k
-	stop
-	start
-}
+restart() {}
