@@ -34,8 +34,8 @@ msgstr "点击 <button style=\"color:#fff;background:linear-gradient(to bottom,#
 msgid "Morning Re-Auth"
 msgstr "清晨自动重连"
 
-msgid "Re-auth when it's 6AM everyday."
-msgstr "每日6时自动进行"
+msgid "Re-auth when it's 6:10 A.M. everyday."
+msgstr "每天6点10分自动进行"
 
 msgid "Username"
 msgstr "用户名"

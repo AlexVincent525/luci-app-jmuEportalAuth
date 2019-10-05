@@ -1,5 +1,5 @@
 #!/bin/sh /etc/rc.common
-START=80
+START=90
 STOP=15
 
 NAME="jmuEportalAuth"
@@ -31,16 +31,11 @@ run_jmuEportalAuth()
 	fi
 
 	crontab_file="/etc/crontabs/root"
+	touch $crontab_file
+	/etc/init.d/cron start
 	if [ $enable ] && [ $cronset ]; then
-		if [ ! -f $crontab_file ]; then
-			touch $crontab_file
-			sleep 1
-			echo "30 6 * * * /bin/jmuEportalAuth -r" >> $crontab_file
-		else
-			sed -i '/jmuEportalAuth/d' $crontab_file
-			sleep 1
-			echo "30 6 * * * /bin/jmuEportalAuth -r" >> $crontab_file
-		fi
+		sed -i '/jmuEportalAuth/d' $crontab_file
+		echo "10 6 * * * /bin/jmuEportalAuth -r" >> $crontab_file
 		service cron restart
 	else
 		sed -i '/jmuEportalAuth/d' $crontab_file
@@ -56,9 +51,13 @@ start()
 
 stop()
 {
-	jmuEportalAuth -k
-	sleep 1
 	killall jmuEportalAuth
 }
 
-restart() {}
+restart()
+{
+	jmuEportalAuth -k
+	sleep 1
+	config_load jmuEportalAuth
+	config_foreach run_jmuEportalAuth jmuEportalAuth
+}

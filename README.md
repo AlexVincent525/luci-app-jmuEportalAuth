@@ -4,8 +4,9 @@ OpenWrt/LEDE LuCI for jmuEportalAuth
 简介
 ---
 
-本软件包是 jmuEportalAuth 的 LuCI 控制界面，修改自 [luci-app-jmuSupplicant](https://github.com/LGiki/luci-app-jmuSupplicant) 
-目前支持到 openwrt 18.06.4
+本软件包是 jmuEportalAuth 的 LuCI 控制界面，修改自 [luci-app-jmuSupplicant](https://github.com/LGiki/luci-app-jmuSupplicant)
+
+目前支持到 OpenWrt 18.06.4
 
 软件包文件结构:
 ```
@@ -33,9 +34,9 @@ OpenWrt/LEDE LuCI for jmuEportalAuth
 
 软件包需在 `jmuEportalAuth` 安装后方可安装.
 可通过编译 [jmuEportalAuth](https://github.com/openjmu/jmuEportalAuth) 获得.  
-只有当文件存在时, 相应的功能才可被使用, 并显示相应的 LuCI 设置界面.   
+只有当文件存在时, 相应的功能才可被使用, 并显示相应的 LuCI 设置界面.
 
- 可执行文件  | 可选 | 功能        
+ 可执行文件  | 可选 | 功能
  ------------|------|-------------
  `jmuEportalAuth` | 否   | 进行Web认证
 
