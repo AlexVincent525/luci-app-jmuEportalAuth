@@ -32,7 +32,6 @@ run_jmuEportalAuth()
 
 	crontab_file="/etc/crontabs/root"
 	touch $crontab_file
-	/etc/init.d/cron start
 	if [ $enable ] && [ $cronset ]; then
 		sed -i '/jmuEportalAuth/d' $crontab_file
 		echo "10 6 * * * /bin/jmuEportalAuth -r" >> $crontab_file

@@ -33,7 +33,7 @@ OpenWrt/LEDE LuCI for jmuEportalAuth
 ---
 
 软件包需在 `jmuEportalAuth` 安装后方可安装.
-可通过编译 [jmuEportalAuth](https://github.com/openjmu/jmuEportalAuth) 获得.  
+可通过编译 [jmuEportalAuth](https://github.com/openjmu/jmuEportalAuth) 获得.
 只有当文件存在时, 相应的功能才可被使用, 并显示相应的 LuCI 设置界面.
 
  可执行文件  | 可选 | 功能
@@ -47,13 +47,13 @@ OpenWrt/LEDE LuCI for jmuEportalAuth
 配置
 ---
 
-软件包的配置文件路径: `/etc/config/jmuEportalAuth`  
-此文件为 UCI 配置文件, 配置方式可参考 [OpenWrt Wiki][uci]  
+软件包的配置文件路径: `/etc/config/jmuEportalAuth`
+此文件为 UCI 配置文件, 配置方式可参考 [OpenWrt Wiki][uci]
 
 编译
 ---
 
-从 OpenWrt/LEDE 的 [SDK][openwrt-sdk] 编译  
+从 OpenWrt/LEDE 的 [SDK][openwrt-sdk] 编译
 ```bash
 # 解压下载好的 SDK
 wget https://mirrors.tuna.tsinghua.edu.cn/lede/releases/17.01.6/targets/ar71xx/generic/lede-sdk-17.01.6-ar71xx-generic_gcc-5.4.0_musl-1.1.16.Linux-x86_64.tar.xz
