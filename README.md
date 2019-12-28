@@ -4,11 +4,10 @@ OpenWrt/LEDE LuCI for jmuEportalAuth
 简介
 ---
 
-本软件包是 jmuEportalAuth 的 LuCI 控制界面，修改自 [luci-app-jmuSupplicant](https://github.com/LGiki/luci-app-jmuSupplicant)
-
-目前支持到 OpenWrt 18.06.4
+本软件包是 jmuEportalAuth 的 LuCI 控制界面，修改自 [luci-app-jmuSupplicant](https://github.com/LGiki/luci-app-jmuSupplicant)，目前支持到 OpenWrt 18.06.4
 
 软件包文件结构:
+
 ```
 /
 ├── etc/
@@ -54,6 +53,7 @@ OpenWrt/LEDE LuCI for jmuEportalAuth
 ---
 
 从 OpenWrt/LEDE 的 [SDK][openwrt-sdk] 编译
+
 ```bash
 # 解压下载好的 SDK
 wget https://mirrors.tuna.tsinghua.edu.cn/lede/releases/17.01.6/targets/ar71xx/generic/lede-sdk-17.01.6-ar71xx-generic_gcc-5.4.0_musl-1.1.16.Linux-x86_64.tar.xz

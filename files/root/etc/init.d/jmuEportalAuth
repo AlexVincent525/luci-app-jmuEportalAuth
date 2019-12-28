@@ -35,10 +35,10 @@ run_jmuEportalAuth()
 	if [ $enable ] && [ $cronset ]; then
 		sed -i '/jmuEportalAuth/d' $crontab_file
 		echo "10 6 * * * /bin/jmuEportalAuth -r" >> $crontab_file
-		service cron restart
+		crontab $crontab_file
 	else
 		sed -i '/jmuEportalAuth/d' $crontab_file
-		service cron restart
+		crontab $crontab_file
 	fi
 }
 
@@ -50,13 +50,11 @@ start()
 
 stop()
 {
-	killall jmuEportalAuth
+	killall jmuEportalAuth 2>/dev/null
 }
 
 restart()
 {
-	jmuEportalAuth -k
-	sleep 1
-	config_load jmuEportalAuth
-	config_foreach run_jmuEportalAuth jmuEportalAuth
+	stop
+	start
 }
