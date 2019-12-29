@@ -40,7 +40,7 @@ function button_stop:write(self, section, value)
 end
 
 enable = o:taboption("basic", Flag, "enable", translate("Enable"), translate("After clicked <button style=\"color:#fff;background:linear-gradient(to bottom,#0069d6,#0049d6) no-repeat;text-shadow:0 -1px 0 rgba(0,0,0,0.25)\" class=\"cbi-button cbi-button-apply\" type=\"button\">Save & Apply</button>, click <button class='cbi-button cbi-button-apply' onclick=\"this.blur(); var section_name=document.getElementsByTagName('label')[1].getAttribute('for').split('.')[2]; return cbi_t_switch('jmuEportalAuth.'+section_name, 'action')\">Actions</button> to restart service manually."))
-cronset = o:taboption("basic", Flag, "cronset", translate("Morning Re-Auth"), translate("Re-auth when it's 6AM everyday."))
+cronset = o:taboption("basic", Flag, "cronset", translate("Morning Re-Auth"), translate("Re-auth when it's 6:10 A.M. everyday."))
 name = o:taboption("basic", Value, "username", translate("Username"), translate("WorkID/StuID"))
 pass = o:taboption("basic", Value, "password", translate("Password"), translate("Password for jmu pass."))
 pass.password = true
